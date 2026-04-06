@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 必须和你的 Mapper 接口全类名一致 -->
+<mapper namespace="com.deerecho.My_Blog.mapper.ArticleMapper">
+
+    <!-- 浏览量 +1 -->
+    <update id="incrementViewCount">
+        UPDATE blog_article
+        SET view_count = view_count + 1
+        WHERE id = #{articleId}
+    </update>
+
+    <!-- 点赞数 +1 -->
+    <update id="incrementLikeCount">
+        UPDATE blog_article
+        SET like_count = like_count + 1
+        WHERE id = #{articleId}
+    </update>
+
+    <!-- 点赞数 -1 -->
+    <update id="decrementLikeCount">
+        UPDATE blog_article
+        SET like_count = like_count - 1
+        WHERE id = #{articleId}
+        AND like_count > 0
+    </update>
+
+</mapper>
